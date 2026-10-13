@@ -8,7 +8,7 @@
 .chapter-ringside .project-copy { grid-column: 1; grid-row: 1; }
 .chapter-ringside .project-visual { grid-column: 2; grid-row: 1; }
 .chapter-niyam .project-layout { grid-template-columns: 1.15fr 1fr; }
-.chapter-niyam .project-visual { grid-column: 1; grid-row: 1; border-left: 0; background: #111411; }
+.chapter-niyam .project-visual { grid-column: 1; grid-row: 1; border-left: 0; background: #111214; }
 .chapter-niyam .project-copy { grid-column: 2; grid-row: 1; }
 .chapter-exoplanet .project-visual { background: #0c1118; padding: 30px 34px 20px; }
 .project-toolset { border-top: 1px solid var(--line); padding-top: 20px; }
@@ -41,26 +41,26 @@
 .guidance-note p { font-size: 12px; line-height: 1.75; margin-top: 8px; }
 .figure-heading { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .figure-heading h4 { font-family: var(--font-syne); font-size: clamp(26px, 3vw, 42px); }
-.figure-tag { font-family: var(--font-jetbrains-mono); font-size: 10px; color: #c2b697; }
+.figure-tag { font-family: var(--font-jetbrains-mono); font-size: 10px; color: #97a9c2; }
 .observatory-figure > svg { display: block; width: 100%; height: auto; margin: 24px 0 12px; }
 .chart-grid { stroke: #344252; stroke-width: .6; }
 .chart-text { fill: #b4c0d0; font-size: 11px; font-family: var(--font-jetbrains-mono); }
 .model-caption { display: flex; gap: 22px; align-items: center; font-size: 13px; color: #b2bfd1; padding: 16px 0; }
-.model-caption > span { font-family: var(--font-jetbrains-mono); color: #dacba9; font-size: 11px; flex-shrink: 0; }
-.architecture-heading .eyebrow { color: #bbc9b9; }
+.model-caption > span { font-family: var(--font-jetbrains-mono); color: #a9bdda; font-size: 11px; flex-shrink: 0; }
+.architecture-heading .eyebrow { color: #b9c0c9; }
 .architecture-heading h4 { max-width: 14ch; margin-bottom: 30px; }
 .document-stages { list-style: none; }
-.document-stages li { display: grid; grid-template-columns: 26px minmax(0, 1fr) 16px; gap: 14px; padding: 14px 0; border-top: 1px solid #354135; align-items: start; }
-.stage-index { font-family: var(--font-jetbrains-mono); font-size: 10px; color: #a0b39b; padding-top: 3px; }
-.document-stages h5 { font-weight: 500; font-size: 15px; line-height: 1.4; color: #dde6d9; }
-.document-stages p { font-size: 11px; color: #aebaa9; line-height: 1.7; margin-top: 4px; }
-.stage-arrow { color: #b2c6aa; font-size: 16px; }
-.architecture-target { color: #c2cdbb; font-family: var(--font-jetbrains-mono); font-size: 10px; margin-top: 22px; }
+.document-stages li { display: grid; grid-template-columns: 26px minmax(0, 1fr) 16px; gap: 14px; padding: 14px 0; border-top: 1px solid #353a41; align-items: start; }
+.stage-index { font-family: var(--font-jetbrains-mono); font-size: 10px; color: #9ba5b3; padding-top: 3px; }
+.document-stages h5 { font-weight: 500; font-size: 15px; line-height: 1.4; color: #d9dee6; }
+.document-stages p { font-size: 11px; color: #a9b0ba; line-height: 1.7; margin-top: 4px; }
+.stage-arrow { color: #aab6c6; font-size: 16px; }
+.architecture-target { color: #bbc2cd; font-family: var(--font-jetbrains-mono); font-size: 10px; margin-top: 22px; }
 .chapter-wesley-flow .project-visual { max-width: 920px; padding: 20px 28px; }
 .chapter-wesley-flow .instrument-label { margin-bottom: 0; }
 .native-window-controls i:nth-child(1) { background: #b97875; }
 .native-window-controls i:nth-child(2) { background: #b8a076; }
-.native-window-controls i:nth-child(3) { background: #85a78b; }
+.native-window-controls i:nth-child(3) { background: #8593a7; }
 .flow-menu { display: flex; justify-content: space-between; gap: 16px; font-size: 11px; color: #aeb9c9; padding: 16px 0; }
 .flow-menu span:last-child { font-family: var(--font-jetbrains-mono); font-size: 9px; }
 .flow-hud { margin: 18px auto; padding: 28px; max-width: 620px; border: 1px solid #506079; border-radius: 12px; background: #1a2432; box-shadow: 0 16px 30px #0003; }

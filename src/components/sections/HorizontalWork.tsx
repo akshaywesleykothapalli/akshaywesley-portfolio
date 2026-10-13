@@ -13,6 +13,9 @@ export function HorizontalWork({ children }: { children: ReactNode }) {
     const viewport = root.querySelector<HTMLElement>('.work-window')!
     const track = root.querySelector<HTMLElement>('.work-track')!
     const cards = Array.from(track.querySelectorAll<HTMLElement>(':scope > .project-chapter'))
+    const stories = cards.map(card => card.querySelector<HTMLElement>('.project-story')!)
+    const rendered = new Map<HTMLElement, string>()
+    let lastX = NaN
     const counter = root.querySelector<HTMLElement>('.work-current')!
     const indicator = root.querySelector<HTMLElement>('.work-progress-fill')!
     const wide = window.matchMedia('(min-height: 500px)')
@@ -33,8 +36,17 @@ export function HorizontalWork({ children }: { children: ReactNode }) {
         activeIndex = position.active
         cards.forEach((card, i) => { card.dataset.active = String(i === activeIndex) })
       }
-      track.style.transform = `translate3d(${-position.x}px, 0, 0)`
-      cards.forEach((card, i) => { card.style.transform = 'translate3d(0, 0, 0)'; card.querySelector<HTMLElement>('.project-story')!.style.transform = `translate3d(0, ${-position.pans[i]}px, 0)`; card.style.setProperty('--project-reveal', String(position.reveals[i])); card.style.setProperty('--project-detail-reveal', String(position.detailReveals[i])); const open = String(position.detailReveals[i] > .9); if (card.dataset.detailOpen !== open) card.dataset.detailOpen = open })
+      if (lastX !== position.x) { track.style.transform = `translate3d(${-position.x}px, 0, 0)`; lastX = position.x }
+      cards.forEach((card, i) => {
+        const key = `${position.pans[i]},${position.reveals[i]},${position.detailReveals[i]}`
+        if (rendered.get(card) === key) return
+        rendered.set(card, key)
+        stories[i].style.transform = `translate3d(0, ${-position.pans[i]}px, 0)`
+        card.style.setProperty('--project-reveal', String(position.reveals[i]))
+        card.style.setProperty('--project-detail-reveal', String(position.detailReveals[i]))
+        const open = String(position.detailReveals[i] > .9)
+        if (card.dataset.detailOpen !== open) card.dataset.detailOpen = open
+      })
       counter.textContent = String(position.active + 1).padStart(2, '0')
       indicator.style.transform = `scaleX(${position.fraction})`
     }
@@ -84,6 +96,7 @@ export function HorizontalWork({ children }: { children: ReactNode }) {
         section.classList.toggle('has-horizontal-work', enabled)
       }
       if (!enabled) {
+        rendered.clear(); lastX = NaN
         root.style.removeProperty('height')
         track.style.removeProperty('transform')
         cards.forEach(card => { card.style.removeProperty('transform'); card.style.removeProperty('--project-reveal'); card.style.removeProperty('--project-detail-reveal'); delete card.dataset.detailOpen; delete card.dataset.active; const story = card.querySelector<HTMLElement>('.project-story')!; story.style.removeProperty('height'); story.style.removeProperty('transform'); delete card.dataset.contentHeight })

@@ -7,6 +7,7 @@ import './horizontal-work.css'
 import './motion.css'
 import './developer.css'
 import '@/components/text/BlurText.css'
+import '@/components/ui/motion-footer.css'
 const spaceGrotesk = localFont({ src: './fonts/Space_Grotesk.woff2', variable: '--font-space-grotesk', display: 'swap', weight: '300 700' })
 const jetbrainsMono = localFont({ src: './fonts/JetBrains_Mono.woff2', variable: '--font-jetbrains-mono', display: 'swap', weight: '400 600' })
 const syne = localFont({ src: './fonts/Syne.woff2', variable: '--font-syne', display: 'swap', weight: '400 800' })
