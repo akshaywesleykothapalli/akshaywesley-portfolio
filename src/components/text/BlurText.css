@@ -1,0 +1,2 @@
+.blur-text{gap:0}.blur-text>span{flex:none}.blur-line{display:block!important}.blur-line>span{display:inline-block}.hero-intro.blur-text{display:flex}.outlined-name .blur-text,.blur-text.outlined-name{color:inherit;-webkit-text-stroke:inherit}
+@media(prefers-reduced-motion:reduce){.blur-text>span{filter:none!important;opacity:1!important;transform:none!important}}

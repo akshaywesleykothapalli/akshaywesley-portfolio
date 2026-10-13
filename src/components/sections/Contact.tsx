@@ -1,0 +1,7 @@
+import { ArrowUpRight } from '@/components/icons/ArrowUpRight'
+import { SectionLabel } from '@/components/text/SectionLabel'
+import BlurText from '@/components/text/BlurText'
+import { Reveal, InteractiveLink } from '@/components/motion/MotionSystem'
+export function Contact() {
+  return <section tabIndex={-1} id="contact" className="editorial-section contact-section"><div className="ending-rule" aria-hidden="true"><span>INPUT</span><i /><span>WHAT&apos;S NEXT?</span></div><SectionLabel text="04 / START A CONVERSATION" /><h2><BlurText as="span" text="LET’S BUILD" delay={150} animateBy="words" direction="top" className="motion-line blur-line" /><BlurText as="span" text="SOMETHING GOOD." delay={150} animateBy="words" direction="top" className="motion-line blur-line" /></h2><Reveal className="contact-bottom" delay={.16}><p>An idea, a collaboration, or a good conversation.</p><div><InteractiveLink className="contact-email" aria-label="Email Akshay Wesley" href="mailto:akshaywesleyk@gmail.com">akshaywesleyk@gmail.com <ArrowUpRight /></InteractiveLink><div className="contact-social"><InteractiveLink href="https://github.com/akshaywesleykothapalli" target="_blank" rel="noopener noreferrer">GitHub <ArrowUpRight /></InteractiveLink><InteractiveLink href="https://linkedin.com/in/akshay-wesley-kothapalli-966738378" target="_blank" rel="noopener noreferrer">LinkedIn <ArrowUpRight /></InteractiveLink></div></div></Reveal></section>
+}

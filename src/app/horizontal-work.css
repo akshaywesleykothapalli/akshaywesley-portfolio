@@ -1,0 +1,57 @@
+/* Progressive enhancement: ordinary document flow before setup, on phones, and for reduced motion. */
+.work-scroll-context { display: none; }
+.work-journey[data-horizontal="true"] .work-pin {
+  position: sticky;
+  top: 88px;
+  height: calc(100svh - 104px);
+  display: flex;
+  flex-direction: column;
+}
+.work-section.has-horizontal-work { max-width: none; }
+.work-journey[data-horizontal="true"] .work-scroll-context {
+  display: flex;
+  position: relative;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 20px;
+  flex: 0 0 64px;
+  background: #050507;
+  z-index: 2;
+}
+.work-context-title { margin-left: 24px; color: #e0e5ef; }
+.work-scroll-hint, .work-count { font-family: var(--font-jetbrains-mono); font-size: 10px; color: #acb8ca; }
+.work-scroll-hint { margin-left: auto; }
+.work-progress { position: absolute; bottom: 15px; left: 0; right: 0; height: 1px; background: #344050; }
+.work-progress-fill { display: block; width: 100%; height: 100%; background: #bdcce2; transform-origin: left; transform: scaleX(0); }
+.work-journey[data-horizontal="true"] .work-window {
+  flex: 1;
+  min-height: 0;
+  overflow: clip;
+  overflow-anchor: none;
+}
+.work-journey[data-horizontal="true"] .work-track {
+  display: flex;
+  gap: 3vw;
+  align-items: flex-start;
+  position: relative;
+  width: 100%;
+  will-change: transform;
+}
+.work-journey[data-horizontal="true"] .work-track > .project-chapter {
+  flex: 0 0 100%;
+  min-width: 0;
+  margin: 0;
+  padding-bottom: 24px;
+  will-change: transform;
+}
+.work-section.has-horizontal-work .other-projects { margin-top: 48px; }
+/* The media query is also a fail-safe while the JS preference listener updates. */
+@media (max-height: 499px), (prefers-reduced-motion: reduce) {
+  .work-journey[data-horizontal="true"] { height: auto !important; }
+  .work-journey[data-horizontal="true"] .work-pin { position: static; height: auto; display: block; }
+  .work-journey[data-horizontal="true"] .work-scroll-context { display: none; }
+  .work-journey[data-horizontal="true"] .work-window { overflow: visible; }
+  .work-journey[data-horizontal="true"] .work-track { display: block; transform: none !important; will-change: auto; }
+  .work-journey[data-horizontal="true"] .work-track > .project-chapter { transform: none !important; will-change: auto; margin-bottom: 32px; padding-bottom: 72px; }
+}

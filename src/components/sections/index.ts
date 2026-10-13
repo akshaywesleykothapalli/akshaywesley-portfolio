@@ -1,0 +1,7 @@
+export { Hero } from './Hero'
+export { About } from './About'
+export { SelectedWork } from './SelectedWork'
+export { Experience } from './Experience'
+export { Achievements } from './Achievements'
+export { TechnologyPlayground } from './TechnologyPlayground'
+export { Contact } from './Contact'

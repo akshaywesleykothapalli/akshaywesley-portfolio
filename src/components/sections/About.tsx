@@ -1,0 +1,5 @@
+import { SectionLabel } from '@/components/text/SectionLabel'
+import BlurText from '@/components/text/BlurText'
+export function About() {
+ return <section tabIndex={-1} id="about" className="editorial-section about-section"><SectionLabel text="01 / BEHIND THE BUILDS" /><div className="about-layout"><h2><BlurText as="span" text="CURIOUS MIND." delay={150} animateBy="words" direction="top" className="motion-line blur-line" /><BlurText as="span" text="BUILDER’S" delay={150} animateBy="words" direction="top" className="motion-line outlined-name blur-line" /><BlurText as="span" text="INSTINCT." delay={150} animateBy="words" direction="top" className="motion-line blur-line" /></h2><div className="about-copy"><BlurText text="I’m Akshay. I build across AI, web, and native software." delay={150} animateBy="words" direction="top" className="large-copy" /><p>I like the work between an idea and a useful product: making the system work, then making the interface feel right.</p><div className="about-disciplines"><span>01 / INTELLIGENT SYSTEMS</span><span>02 / FULL-STACK PRODUCTS</span><span>03 / NATIVE EXPERIENCES</span></div></div></div></section>
+}

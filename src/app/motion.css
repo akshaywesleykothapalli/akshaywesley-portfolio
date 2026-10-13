@@ -1,0 +1,22 @@
+/* Shared motion tiers: .18s feedback, .28s UI, .58s reveal, .78s emphasis. */
+.motion-line { display: block; }
+.hero-copy { animation: none !important; }
+.global-scroll-progress { position: fixed; z-index: 100; inset: 0 0 auto; height: 1px; background: var(--accent, #a8c7e5); transform-origin: left; pointer-events: none; opacity: .6; }
+[data-motion="interaction"] { transform-origin: center; }
+.desktop-nav a::after { transition: transform .18s cubic-bezier(.22,1,.36,1), opacity .18s; }
+.desktop-nav a:hover, .desktop-nav a:focus-visible { opacity: 1; }
+.technology-node { transition: color .18s, border-color .18s, background-color .18s, opacity .18s; }
+.constellation-map:has(.technology-node:hover) .technology-node:not(:hover):not(.selected-node), .constellation-map:has(.technology-node:focus-visible) .technology-node:not(:focus-visible):not(.selected-node) { opacity: .72; }
+.technology-node:hover, .technology-node:focus-visible { background: rgba(168,199,229,.1); border-color: #a8c7e5; }
+.work-journey[data-horizontal="true"] .project-chapter .project-visual { transition: opacity .28s ease-out; }
+.work-journey[data-horizontal="true"] .project-chapter[data-active="false"] .project-visual { opacity: .86 !important; }
+@media (prefers-reduced-motion: reduce) {
+ [data-motion] { opacity: 1 !important; transform: none !important; transition: none !important; }
+ .global-scroll-progress { display: none; }
+ .project-visual, .technology-node, .desktop-nav a::after { transition: none !important; }
+}
+
+.about-layout h2 > .motion-line:first-child, .about-layout h2 > .motion-line:nth-child(4) { color: var(--ink); }
+.contact-section h2 > .motion-line:first-child { color: var(--ink); }
+.desktop-nav a::after { content: ''; position: absolute; bottom: 3px; left: 0; width: 100%; height: 1px; background: var(--blue); transform: scaleX(0); transform-origin: left; }
+.desktop-nav a[aria-current]::after, .desktop-nav a:hover::after, .desktop-nav a:focus-visible::after { transform: scaleX(1); }
