@@ -1,4 +1,5 @@
 'use client'
+import { useMagnetic } from '@/components/ui/glass-button'
 import { ArrowUpRight } from '@/components/icons/ArrowUpRight'
 import { useEffect, useRef, useState, type MouseEvent } from 'react'
 import { AnimatePresence, m } from 'framer-motion'
@@ -8,6 +9,7 @@ export function Navigation() {
  const [active, setActive] = useState('hero'), [open, setOpen] = useState(false)
  const [scrolled, setScrolled] = useState(false)
  const nav = useRef<HTMLElement>(null)
+ const dock = useMagnetic<HTMLDivElement>(true)
  const toggle = useRef<HTMLButtonElement>(null), panel = useRef<HTMLDivElement>(null)
  const { reduced } = useMotionPreferences()
  useEffect(() => {
@@ -25,7 +27,7 @@ export function Navigation() {
   const outside = (e: PointerEvent) => { if (!panel.current?.contains(e.target as Node) && !toggle.current?.contains(e.target as Node)) setOpen(false) }
   document.addEventListener('keydown', key); document.addEventListener('pointerdown', outside)
   return () => { document.removeEventListener('keydown', key); document.removeEventListener('pointerdown', outside) }
- }, [open])
+ }, [open, toggle])
  const navigate = (event: MouseEvent<HTMLAnchorElement>, id: string) => {
   if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return
   const target = document.getElementById(id)
@@ -40,7 +42,7 @@ export function Navigation() {
  return <nav ref={nav} className="floating-navigation" data-scrolled={scrolled} aria-label="Main navigation">
   <div className="header-atmosphere" aria-hidden="true"><i /><i /><i /></div>
   <a className="nav-brand" href="#hero" onClick={event => navigate(event, 'hero')} aria-label="Akshay Wesley, home">AW<span>_</span></a>
-  <m.div layout={!reduced} className="glass-dock" data-open={open} transition={{ type: 'spring', stiffness: 320, damping: 32, mass: .8 }}>
+  <div ref={dock} className="glass-motion"><m.div layout={!reduced} className="glass-dock" data-open={open} transition={{ type: 'spring', stiffness: 320, damping: 32, mass: .8 }}>
    <button ref={toggle} className="glass-toggle" aria-label={open ? 'Close navigation' : `Open navigation, current section: ${label}`} aria-expanded={open} aria-controls="glass-navigation" onClick={() => setOpen(!open)}>
     <AnimatePresence initial={false} mode="wait"><m.span key={open ? 'navigation' : label} className="dock-word" initial={{ opacity: 0, y: reduced ? 0 : 4, filter: reduced ? 'none' : 'blur(4px)' }} animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }} exit={{ opacity: 0, y: reduced ? 0 : -4, filter: reduced ? 'none' : 'blur(4px)' }} transition={{ duration: reduced ? 0 : .18 }}>{open ? 'Navigation' : label}</m.span></AnimatePresence>
     <span className="dock-icon" aria-hidden="true"><i /><i /></span>
@@ -48,6 +50,6 @@ export function Navigation() {
    <AnimatePresence initial={false}>{open && <m.div ref={panel} id="glass-navigation" className="glass-panel" initial={{ height: 0, opacity: 0, filter: reduced ? 'none' : 'blur(6px)' }} animate={{ height: 'auto', opacity: 1, filter: 'blur(0px)' }} exit={{ height: 0, opacity: 0, filter: reduced ? 'none' : 'blur(6px)' }} transition={{ height: { duration: reduced ? 0 : .32, ease: [.22, 1, .36, 1] }, opacity: { duration: reduced ? 0 : .2 }, filter: { duration: reduced ? 0 : .25 } }}>
     <div className="glass-panel-inner">{sections.map(s => <a key={s.id} href={`#${s.id}`} tabIndex={open ? 0 : -1} aria-current={active === s.id ? 'location' : undefined} onClick={event => navigate(event, s.id)}>{s.label}<ArrowUpRight /></a>)}</div>
    </m.div>}</AnimatePresence>
-  </m.div>
+  </m.div></div>
  </nav>
 }

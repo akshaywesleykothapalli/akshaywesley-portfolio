@@ -2,6 +2,15 @@ import { Project, Experience, Achievement, Technology } from '@/types'
 
 export const PROJECTS: Project[] = [
   {
+    id: 'only-cards', title: 'ONLY CARDS', subtitle: 'REAL-TIME MULTIPLAYER CARD GAME',
+    description: 'Multiplayer card play with custom rules and strategic AI opponents.',
+    longDescription: 'A server-authoritative card-game platform with private rooms, matchmaking, configurable rules, strategic AI players, and reconnect handling.',
+    technologies: ['Next.js', 'TypeScript', 'Socket.IO', 'Node.js', 'PostgreSQL'],
+    highlights: ['Live multiplayer', 'Strategic AI opponents', 'Reconnect handling'],
+    links: { github: 'https://github.com/akshaywesleykothapalli/only-cards' },
+    featured: true, category: 'fullstack', year: '2026',
+  },
+  {
     id: 'ringside',
     title: 'RINGSIDE',
     subtitle: 'AI-POWERED LIVE-CALL NEGOTIATION PLATFORM',
@@ -79,29 +88,6 @@ export const PROJECTS: Project[] = [
     featured: true,
     category: 'mobile',
     year: '2026',
-  },
-  {
-    id: 'only-cards',
-    title: 'ONLY CARDS',
-    subtitle: 'REAL-TIME MULTIPLAYER UNO-STYLE CARD GAME',
-    description: 'WebSocket-based multiplayer card game with custom game engine, matchmaking, and spectator mode.',
-    longDescription: 'Only Cards is a real-time multiplayer card game inspired by UNO, built with a custom authoritative game server. Features include ranked matchmaking, custom game modes, spectator mode with replay, friend system, and cross-platform play. The game engine handles complex rule validation, state synchronization, and anti-cheat measures.',
-    technologies: ['TypeScript', 'Node.js', 'WebSockets', 'Redis', 'PostgreSQL', 'React', 'Phaser 3', 'Docker', 'Kubernetes'],
-    highlights: [
-      'Authoritative server architecture',
-      'Sub-50ms game state synchronization',
-      'Ranked ELO-based matchmaking',
-      'Custom game mode scripting',
-      'Spectator mode with instant replay',
-      'Cross-platform: Web, iOS, Android',
-    ],
-    links: {
-      github: 'https://github.com/akshaywesley/only-cards',
-      caseStudy: 'https://akshaywesley.dev/only-cards',
-    },
-    featured: false,
-    category: 'fullstack',
-    year: '2023',
   },
   {
     id: 'blockchainhub',

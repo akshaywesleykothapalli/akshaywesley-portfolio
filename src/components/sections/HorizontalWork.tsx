@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode, useEffect, useRef } from 'react'
+import { Children, ReactNode, useEffect, useRef } from 'react'
 import { clamp, createWorkPlan, WorkPlan, workPosition } from '@/lib/workScroll'
 
 /** Native page scrolling owns the journey. No wheel interception or nested scrolling. */
@@ -85,7 +85,9 @@ export function HorizontalWork({ children }: { children: ReactNode }) {
           const style = getComputedStyle(card)
           const padding = parseFloat(style.paddingTop) + parseFloat(style.paddingBottom)
           const available = Math.max(0, viewport.clientHeight - padding)
-          const content = Math.max(available, summary.offsetHeight + detail.offsetHeight + 28)
+          const readingHeight = summary.offsetHeight + detail.offsetHeight + 28
+          const content = Math.max(available, readingHeight)
+          card.style.setProperty('--story-center', `${Math.max(0, (available - readingHeight) / 2)}px`)
           story.style.height = `${content}px`
           card.dataset.contentHeight = String(content + padding)
           card.style.setProperty('--summary-rest', `${Math.max(0, (available - summary.offsetHeight) / 2)}px`)
@@ -99,7 +101,7 @@ export function HorizontalWork({ children }: { children: ReactNode }) {
         rendered.clear(); lastX = NaN
         root.style.removeProperty('height')
         track.style.removeProperty('transform')
-        cards.forEach(card => { card.style.removeProperty('transform'); card.style.removeProperty('--project-reveal'); card.style.removeProperty('--project-detail-reveal'); delete card.dataset.detailOpen; delete card.dataset.active; const story = card.querySelector<HTMLElement>('.project-story')!; story.style.removeProperty('height'); story.style.removeProperty('transform'); delete card.dataset.contentHeight })
+        cards.forEach(card => { card.style.removeProperty('transform'); card.style.removeProperty('--project-reveal'); card.style.removeProperty('--story-center'); card.style.removeProperty('--project-detail-reveal'); delete card.dataset.detailOpen; delete card.dataset.active; const story = card.querySelector<HTMLElement>('.project-story')!; story.style.removeProperty('height'); story.style.removeProperty('transform'); delete card.dataset.contentHeight })
         activeIndex = -1
         plan = null
         if (oldPosition) {
@@ -188,12 +190,12 @@ export function HorizontalWork({ children }: { children: ReactNode }) {
       section.classList.remove('has-horizontal-work')
       root.style.removeProperty('height')
       track.style.removeProperty('transform')
-      cards.forEach(card => { card.style.removeProperty('transform'); card.style.removeProperty('--project-reveal'); card.style.removeProperty('--project-detail-reveal'); delete card.dataset.detailOpen; delete card.dataset.active; const story = card.querySelector<HTMLElement>('.project-story')!; story.style.removeProperty('height'); story.style.removeProperty('transform'); delete card.dataset.contentHeight })
+      cards.forEach(card => { card.style.removeProperty('transform'); card.style.removeProperty('--project-reveal'); card.style.removeProperty('--story-center'); card.style.removeProperty('--project-detail-reveal'); delete card.dataset.detailOpen; delete card.dataset.active; const story = card.querySelector<HTMLElement>('.project-story')!; story.style.removeProperty('height'); story.style.removeProperty('transform'); delete card.dataset.contentHeight })
     }
   }, [])
   return <div ref={rootRef} className="work-journey">
     <div className="work-pin">
-      <div className="work-scroll-context"><span className="eyebrow">02 / SELECTED WORK <span className="work-context-title">PROJECTS</span></span><span className="work-count"><span className="work-current">01</span> / 04</span><div className="work-progress" aria-hidden="true"><span className="work-progress-fill" /></div></div>
+      <div className="work-scroll-context"><span className="eyebrow">02 / SELECTED WORK <span className="work-context-title">PROJECTS</span></span><span className="work-count"><span className="work-current">01</span> / {String(Children.count(children)).padStart(2, '0')}</span><div className="work-progress" aria-hidden="true"><span className="work-progress-fill" /></div></div>
       <div className="work-window"><div className="work-track">{children}</div></div>
     </div>
   </div>

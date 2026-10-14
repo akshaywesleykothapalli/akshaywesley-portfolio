@@ -1,46 +1,12 @@
 'use client'
 
-import { ComponentPropsWithoutRef, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { cn } from '@/lib/utils'
+import { GlassLink as MagneticLink, useMagnetic } from '@/components/ui/glass-button'
 import { ArrowUpRight } from '@/components/icons/ArrowUpRight'
 
 if (typeof window !== 'undefined') gsap.registerPlugin(ScrollTrigger)
-
-function useMagnetic<T extends HTMLElement>() {
-  const ref = useRef<T>(null)
-  useEffect(() => {
-    const element = ref.current
-    if (!element) return
-    const media = gsap.matchMedia()
-    media.add('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)', () => {
-      const xTo = gsap.quickTo(element, 'x', { duration: .4, ease: 'power3.out' })
-      const yTo = gsap.quickTo(element, 'y', { duration: .4, ease: 'power3.out' })
-      const move = (event: MouseEvent) => {
-        const box = element.getBoundingClientRect()
-        xTo(gsap.utils.clamp(-12, 12, (event.clientX - box.left - box.width / 2) * .18))
-        yTo(gsap.utils.clamp(-8, 8, (event.clientY - box.top - box.height / 2) * .18))
-      }
-      const leave = () => { xTo(0); yTo(0) }
-      element.addEventListener('mousemove', move)
-      element.addEventListener('mouseleave', leave)
-      element.addEventListener('blur', leave)
-      return () => {
-        element.removeEventListener('mousemove', move)
-        element.removeEventListener('mouseleave', leave)
-        element.removeEventListener('blur', leave)
-      }
-    })
-    return () => media.revert()
-  }, [])
-  return ref
-}
-
-function MagneticLink({ className, children, ...props }: ComponentPropsWithoutRef<'a'>) {
-  const ref = useMagnetic<HTMLAnchorElement>()
-  return <a ref={ref} className={cn('footer-glass-pill', className)} {...props}>{children}</a>
-}
 
 function TopButton() {
   const ref = useMagnetic<HTMLButtonElement>()
